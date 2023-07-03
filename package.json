@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start:dev": "nodemon ./src/index.ts",
-    "start:prod": "tsc && node ./build/index.js"
-  },
+    "start:prod": "tsc && node ./build/index.js",
+    "start:multi": "nodemon ./src/index.ts --multi"
+},
   "author": "",
   "license": "ISC",
   "devDependencies": {

@@ -1,6 +1,6 @@
 import { IncomingMessage, ServerResponse } from "http";
 import { validate } from 'uuid'
-import { User } from "./types";
+import { User, db } from "./types";
 import { getAllUsers, getUser } from "./api/get";
 import createUser from "./api/post";
 import sendError from "./error";
@@ -10,7 +10,7 @@ import updateUser from "./api/put";
 const endPoint = '/api/users';
 const endPointId = '/api/users/';
 
-const requestRouter = (request: IncomingMessage, response: ServerResponse, db: Array<User>) => {
+const requestRouter = (request: IncomingMessage, response: ServerResponse) => {
   try {
     const {url} = request;
     if (!url) {

@@ -1,7 +1,7 @@
 import { IncomingMessage, ServerResponse } from "http";
 import { v4 as uuidv4 } from 'uuid';
 import sendError from "../error";
-import { User } from "../types";
+import { User,writeToDb } from "../types";
 
 const createUser = (request: IncomingMessage, response: ServerResponse, db: Array<User>) => {
   let data = '';
@@ -15,6 +15,7 @@ const createUser = (request: IncomingMessage, response: ServerResponse, db: Arra
       }
       user.id = uuidv4();
       db.push(user);
+      writeToDb();
       response.statusCode = 201;
       response.setHeader('Content-Type', 'application/json');
       response.end(JSON.stringify(user));
