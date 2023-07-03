@@ -12,7 +12,12 @@ const endPointId = '/api/users/';
 
 const requestRouter = (request: IncomingMessage, response: ServerResponse, db: Array<User>) => {
   try {
-    if (request.url === endPoint) {
+    const {url} = request;
+    if (!url) {
+      sendError(response, 404, '404 Not Found. No URL');
+      return;
+    }
+    if (url === endPoint) {
       switch (request.method) {
         case 'GET':
           getAllUsers(response, db);
@@ -23,13 +28,13 @@ const requestRouter = (request: IncomingMessage, response: ServerResponse, db: A
         default:
           sendError(response, 404, '404 Not Found. Wrong Method');
       }
-    } else if (request.url.includes(endPointId)) {
-      const id: string = request.url.slice(endPointId.length);
+    } else if (url.includes(endPointId)) {
+      const id: string = url.slice(endPointId.length);
       if (!validate(id)) {
         sendError(response, 400, '400 Bad Request. userId is invalid')
         return;
       }
-      const user: User = db.find((userDB) => (userDB.id === id));
+      const user: User | undefined = db.find((userDB) => (userDB.id === id));
       if (!user) {
         sendError(response, 404, '404 Not Found. No such user')
         return;

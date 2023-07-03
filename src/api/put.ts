@@ -3,7 +3,12 @@ import sendError from "../error";
 import { User } from "../types";
 
 const updateUser = (request: IncomingMessage, response: ServerResponse, db: Array<User>, id: string) => {
-  const user: User = db.find((userDB) => (userDB.id === id));
+  const user: User | undefined = db.find((userDB) => (userDB.id === id));
+  if (!user) {
+    sendError(response, 500, '500 Server Error');
+    throw new Error('User is undefined, but he was');
+  }
+
   let data = '';
   request.on('data', (dataChunk) => { data += dataChunk });
   request.on('end', () => {

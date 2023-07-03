@@ -5,12 +5,13 @@
   "main": "index.js",
   "scripts": {
     "start:dev": "nodemon ./src/index.ts",
-    "start:prod": "tsc && node ./build/src/index.js"
+    "start:prod": "tsc && node ./build/index.js"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^20.3.3",
+    "@types/uuid": "^9.0.2",
     "@typescript-eslint/eslint-plugin": "^5.60.1",
     "@typescript-eslint/parser": "^5.60.1",
     "eslint": "^8.44.0",
@@ -23,7 +24,7 @@
     "typescript": "^5.1.6"
   },
   "dependencies": {
-    "uuid": "^9.0.0",
-    "dotenv": "^16.3.1"
+    "dotenv": "^16.3.1",
+    "uuid": "^9.0.0"
   }
 }

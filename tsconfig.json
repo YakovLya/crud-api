@@ -1,7 +1,15 @@
 {
   "compilerOptions": {
-    "target": "ES6",
-    "outDir": "./build/src"
+    "outDir": "./build",
+    "moduleResolution": "node",
+    "allowJs": true,
+    "target": "esnext",
+    "module": "commonjs",
+    "esModuleInterop": true
+  },
+  "ts-node": {
+    "esm": true,
+    "experimentalSpecifierResolution": "node"
   },
   "include": [ "./src/**/*" ]
 }
