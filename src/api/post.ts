@@ -9,7 +9,6 @@ const createUser = (request: IncomingMessage, response: ServerResponse, db: Arra
   request.on('end', () => {
     try {
       const user: User = JSON.parse(data);
-      console.log(user.hobbies, typeof user.hobbies);
       if (!user.username || !user.age || !user.hobbies) {
         sendError(response, 400, '400 Bad Request. Body does not contain required fields');
         return;
